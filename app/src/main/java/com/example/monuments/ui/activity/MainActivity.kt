@@ -1,6 +1,5 @@
 package com.example.monuments.ui.activity
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,7 +13,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.monuments.R
 import com.example.monuments.databinding.ActivityMainBinding
 import com.example.monuments.ui.dialog.LogOutDialogFragment
-import com.example.monuments.ui.dialog.RemoveMonumentDialogFragment
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,10 +53,14 @@ class MainActivity : AppCompatActivity(), LogOutDialogFragment.LogOutListener {
         return super.onOptionsItemSelected(item)
     }
 
+    fun displayLogOutDialog() {
+        val dialog: LogOutDialogFragment = LogOutDialogFragment.newInstance()
+        dialog.show(this.supportFragmentManager, getString(R.string.detail_dialog_tag))
+    }
+
     override fun onBackPressed() {
         if (isRootElement) {
-            val dialog: LogOutDialogFragment = LogOutDialogFragment.newInstance()
-            dialog.show(this.supportFragmentManager, getString(R.string.detail_dialog_tag))
+            displayLogOutDialog()
 
         } else {
             super.onBackPressed()
@@ -70,7 +72,7 @@ class MainActivity : AppCompatActivity(), LogOutDialogFragment.LogOutListener {
         val navView: NavigationView = findViewById(R.id.navView)
         navView.setupWithNavController(navController)
         mainActivityViewBinding?.navViewLabelLogOutBtn?.setOnClickListener {
-            onBackPressed()
+            displayLogOutDialog()
         }
     }
 
