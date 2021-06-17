@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_navigation"
+    app:startDestination="@+id/allMonuments">
+
+    <fragment
+        android:id="@+id/allMonuments"
+        android:label="AllMonumentsFragment"
+        android:name="com.example.monuments.ui.fragment.allMonuments.AllMonumentsFragment"
+        tools:layout="@layout/fragment_all_monuments">
+
+        <action
+            android:id="@+id/action_allMonuments_to_detail"
+            app:destination="@id/detail"
+            app:popUpTo="@id/allMonuments"/>
+
+        <action
+            android:id="@+id/action_allMonuments_to_MonumentsMaps"
+            app:destination="@id/MonumentsMaps" />
+        <argument
+            android:name="root_element"
+            app:argType="boolean"
+            android:defaultValue="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/favorites"
+        android:label="FavoritesFragment"
+        android:name="com.example.monuments.ui.fragment.favorites.FavoritesFragment"
+        tools:layout="@layout/fragment_all_monuments">
+
+        <action
+            android:id="@+id/action_favorites_to_detail"
+            app:destination="@id/detail" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/myMonuments"
+        android:name="com.example.monuments.ui.fragment.myMonuments.MyMonumentsFragment"
+        tools:layout="@layout/fragment_all_monuments">
+
+        <action
+            android:id="@+id/action_myMonuments_to_detail"
+            app:destination="@id/detail"
+            app:popUpTo="@id/myMonuments"/>
+
+        <action
+            android:id="@+id/action_myMonuments_to_addMonumentsFragment"
+            app:destination="@id/addMonumentsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detail"
+        android:label="DetailFragment"
+        android:name="com.example.monuments.ui.fragment.detail.DetailFragment"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="monumentId"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_detail_to_myMonuments"
+            app:destination="@id/myMonuments"/>
+
+        <action
+            android:id="@+id/action_detail_to_favorites"
+            app:destination="@id/favorites" />
+
+        <action
+            android:id="@+id/action_detail_to_allMonuments"
+            app:destination="@id/allMonuments" />
+
+        <action
+            android:id="@+id/action_detail_to_urlExtra"
+            app:destination="@id/urlExtra" />
+
+        <action
+            android:id="@+id/action_detail_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/urlExtra"
+        android:label="UrlExtraFragment"
+        android:name="com.example.monuments.ui.fragment.urlExtra.UrlExtraFragment"
+        tools:layout="@layout/fragment_url_extra">
+
+        <action
+            android:id="@+id/action_urlExtra_to_detail"
+            app:destination="@id/detail"/>
+
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true"/>
+
+        <argument
+            android:name="url"
+            app:argType="string"
+            app:nullable="true"/>
+
+        <argument
+            android:name="showNavigationBackButton"
+            app:argType="boolean" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/MonumentsMaps"
+        android:name="com.example.monuments.ui.fragment.monumentsMaps.MonumentsMapsFragment"
+        tools:layout="@layout/fragment_monuments_maps">
+
+        <action
+            android:id="@+id/action_MonumentsMaps_to_allMonuments"
+            app:destination="@id/allMonuments" />
+
+        <action
+            android:id="@+id/action_MonumentsMaps_to_detail"
+            app:destination="@id/detail" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addMonumentsFragment"
+        android:name="com.example.monuments.ui.fragment.addMonuments.AddMonumentsFragment"
+        android:label="AddMonumentsFragment"
+        tools:layout="@layout/fragment_add_monuments" >
+        <action
+            android:id="@+id/action_addMonumentsFragment_to_myMonuments"
+            app:destination="@id/myMonuments" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/commentsFragment"
+        android:name="com.example.monuments.ui.fragment.comments.CommentsFragment"
+        android:label="fragment_comments"
+        tools:layout="@layout/fragment_comments" >
+
+        <action
+            android:id="@+id/action_commentsFragment_to_detail"
+            app:destination="@id/detail" />
+
+        <argument
+            android:name="id"
+            app:argType="string" />
+
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true"/>
+
+        <argument
+            android:name="showNavigationBackButton"
+            app:argType="boolean" />
+
+    </fragment>
+
+</navigation>

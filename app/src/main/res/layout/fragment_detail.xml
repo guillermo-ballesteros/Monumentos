@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/all_recipes_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/detail__pager__view_pager"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <ImageButton
+            android:id="@+id/detail__btn__previous"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="@+id/detail__pager__view_pager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detail__label__description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail__label__city" />
+
+        <ImageButton
+            android:id="@+id/detail__btn__next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_arrow_forward"
+            app:layout_constraintBottom_toBottomOf="@+id/detail__pager__view_pager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detail__label__title"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail__pager__view_pager" />
+
+        <TextView
+            android:id="@+id/detail__label__city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail__label__title" />
+
+
+        <ImageButton
+            android:id="@+id/detail__btn__wiki"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_wiki"
+            app:layout_constraintEnd_toStartOf="@+id/detail__btn__favorite"
+            app:layout_constraintTop_toBottomOf="@+id/detail__pager__view_pager" />
+
+        <ImageButton
+            android:id="@+id/detail__btn__favorite"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="8dp"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toStartOf="@+id/detail__btn__rate"
+            app:layout_constraintTop_toBottomOf="@+id/detail__pager__view_pager" />
+
+        <ProgressBar
+            android:id="@+id/detail__progress__progress_bar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/detail__btn__rate"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="5dp"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_rate"
+            app:layout_constraintEnd_toStartOf="@+id/detail__btn__location"
+            app:layout_constraintTop_toBottomOf="@+id/detail__pager__view_pager" />
+
+        <ImageView
+            android:id="@+id/detail__btn__location"
+            android:layout_width="43dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail__pager__view_pager"
+            app:srcCompat="@drawable/ic_location_on" />
+
+        <TextView
+            android:id="@+id/detail__label__notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="25dp"
+            android:minHeight="25dp"
+            android:background="@drawable/notification_circle"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            app:layout_constraintEnd_toEndOf="@+id/detail__btn__rate"
+            app:layout_constraintTop_toTopOf="@+id/detail__btn__rate" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>

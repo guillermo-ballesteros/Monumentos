@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item android:title="@string/drawer_monuments_menu"
+            android:id="@+id/allMonuments"
+            />
+        <item android:title="@string/drawer_favorites_menu"
+            android:id="@+id/favorites"/>
+        <item android:title="@string/drawer_my_monuments_menu"
+            android:id="@+id/myMonuments"
+            />
+    </group>
+</menu>

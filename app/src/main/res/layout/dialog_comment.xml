@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RatingBar
+        android:id="@+id/comment_dialog__rating__rating_bar"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:numStars="5"
+        android:rating="1"
+        android:stepSize="1"
+        android:layout_weight="1" />
+
+    <EditText
+        android:id="@+id/comment_dialog__input__comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/detail_add_comment_hint"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/comment_dialog__btn__cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="@string/detail_dialog_cancel_button"
+            android:textAllCaps="false"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/comment_dialog__btn__add_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/detail_dialog_add_button"
+            android:textAllCaps="false"
+            style="?android:attr/buttonBarButtonStyle" />
+
+    </LinearLayout>
+</LinearLayout>

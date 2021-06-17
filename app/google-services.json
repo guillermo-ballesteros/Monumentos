@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "897108317386",
+    "firebase_url": "https://monuments-e4047-default-rtdb.firebaseio.com",
+    "project_id": "monuments-e4047",
+    "storage_bucket": "monuments-e4047.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897108317386:android:ea61d450015401c200d033",
+        "android_client_info": {
+          "package_name": "com.example.monuments"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897108317386-jadk65gsvhu6bs9e917na2n44hkcuf5q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.monuments.ui.activity",
+            "certificate_hash": "dff8db0de68e7a9015aaa99679a06350225deaec"
+          }
+        },
+        {
+          "client_id": "897108317386-vudnesumet2u09k62h9sa163p8vjgfqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo-woORx5z_h895n-UvrBqmhF-pujsPKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "897108317386-vudnesumet2u09k62h9sa163p8vjgfqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
