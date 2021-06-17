@@ -112,6 +112,7 @@
     <string name="detail_log_out_text">Are you sure that you want to log out?</string>
     <string name="detail_log_out">Log Out</string>
     <string name="detail_refresh_comments_btn">Refresh</string>
+    <string name="error_invalid_credentials_reset_password">This email does not exist</string>
 
     <string-array name="detail_map_filter">
         <item>All</item>

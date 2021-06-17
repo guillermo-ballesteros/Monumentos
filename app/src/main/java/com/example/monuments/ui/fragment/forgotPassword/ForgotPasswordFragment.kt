@@ -39,7 +39,7 @@ class ForgotPasswordFragment : Fragment() {
                 forgotPasswordViewBinding?.forgotInputEmail?.error = getString(R.string.error_null_values)
             }
             Constants.INVALID_CREDENTIALS_CODE -> {
-                forgotPasswordViewBinding?.forgotInputEmail?.error = getString(R.string.error_invalid_credentials)
+                forgotPasswordViewBinding?.forgotInputEmail?.error = getString(R.string.error_invalid_credentials_reset_password)
             }
         }
     }
