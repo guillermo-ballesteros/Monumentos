@@ -12,18 +12,18 @@ import com.example.monuments.R
 class RemoveMonumentDialogFragment: DialogFragment() {
 
     interface RemoveMonumentListener {
-        fun remove(monumentPosition: Int)
+        fun remove(id: String)
     }
 
-    private val listIndex by lazy { arguments?.getInt(KEY_LIST_INDEX) ?: -1 }
+    private val idMonument by lazy { arguments?.getString(KEY_ID_MONUMENT) ?: "unknown" }
 
 
     companion object {
-        private const val KEY_LIST_INDEX = "key_index"
-        fun newInstance(index: Int): RemoveMonumentDialogFragment {
+        private const val KEY_ID_MONUMENT = "key_index"
+        fun newInstance(index: String): RemoveMonumentDialogFragment {
             val dialogInstance = RemoveMonumentDialogFragment()
             val auxBundle = Bundle().apply {
-                putInt(KEY_LIST_INDEX, index)
+                putString(KEY_ID_MONUMENT, index)
             }
             dialogInstance.arguments = auxBundle
             return dialogInstance
@@ -62,7 +62,7 @@ class RemoveMonumentDialogFragment: DialogFragment() {
 
         removeMonumentBtn.setOnClickListener {
             val listener = getListener()
-            listener?.remove(listIndex)
+            listener?.remove(idMonument)
             dismiss()
         }
 

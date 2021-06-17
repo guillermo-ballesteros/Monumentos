@@ -247,7 +247,8 @@ class MainRepository @Inject constructor(
         return finalListImages
     }
 
-    suspend fun changeFavorite(monument: MonumentBO) {
+    suspend fun changeFavorite(id: String) {
+        val monument = getMonument(id)
         if (monument.favorite.id == Constants.UNKNOWN_VALUE) {
             firebaseFirestore.collection(Constants.FAVORITES_DATABASE).document().set(
                 hashMapOf(
@@ -291,13 +292,11 @@ class MainRepository @Inject constructor(
         getDataAPI()
     }
 
-    suspend fun removeMonument(position: Int): Int {
-        val monument = monuments.value?.get(position)
-        return if (monument?.user == auth.currentUser?.email) {
-            monument?.id?.let { id ->
-                firebaseFirestore.collection(Constants.MONUMENTS_DATABASE).document(id).delete().await()
-                database.deleteMonument(id)
-            }
+    suspend fun removeMonument(id: String): Int {
+        val monument = getMonument(id)
+        return if (monument.user == auth.currentUser?.email) {
+            firebaseFirestore.collection(Constants.MONUMENTS_DATABASE).document(monument.id).delete().await()
+            database.deleteMonument(monument.id)
 
             monumentsLiveData.postValue(getMonumentsRoom())
             Constants.SUCCESS_CODE

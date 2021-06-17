@@ -24,21 +24,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AllMonumentsFragment : Fragment(), RemoveMonumentDialogFragment.RemoveMonumentListener {
+class AllMonumentsFragment : Fragment() {
 
     private val viewModel by lazy { ViewModelProvider(this).get(AllMonumentsViewModel::class.java) }
 
     private var allMonumentsViewBinding: FragmentAllMonumentsBinding? = null
 
     private val listener = object: AllMonumentsAdapter.AllMonumentsListener {
-        override fun onFavClick(position: Int) {
-            viewModel.changeFavorite(position)
-        }
-
-        override fun onLongClick(position: Int) {
-            val dialog: RemoveMonumentDialogFragment = RemoveMonumentDialogFragment.newInstance(position)
-            dialog.setTargetFragment(this@AllMonumentsFragment, 10)
-            dialog.show(this@AllMonumentsFragment.parentFragmentManager, getString(R.string.detail_dialog_tag))
+        override fun onFavClick(id: String) {
+            viewModel.changeFavorite(id)
         }
 
         override fun onClick(id: String) {
@@ -68,7 +62,6 @@ class AllMonumentsFragment : Fragment(), RemoveMonumentDialogFragment.RemoveMonu
         viewModel.getMonuments().observe(viewLifecycleOwner, monumentsObserver)
 
         viewModel.progressBar.observe(viewLifecycleOwner, progressBarObserver)
-        viewModel.result.observe(viewLifecycleOwner, resultObserver)
 
         allMonumentsViewBinding?.allBtnMap?.setOnClickListener {
             val action = AllMonumentsFragmentDirections.actionAllMonumentsToMonumentsMaps()
@@ -86,26 +79,6 @@ class AllMonumentsFragment : Fragment(), RemoveMonumentDialogFragment.RemoveMonu
         allMonumentsViewBinding?.allProgressProgressBar?.changeVisible(it)
     }
 
-    private val resultObserver = Observer<Int> { result ->
-        when (result) {
-            Constants.NOT_SAME_USER_CODE -> {
-                view?.let { view ->
-                    Snackbar.make(view, getString(R.string.error_same_user), Snackbar.LENGTH_SHORT).show()
-                }
-                viewModel.notificationDone()
-            }
-            Constants.SUCCESS_CODE -> {
-                view?.let { view ->
-                    Snackbar.make(view, getString(R.string.detail_monument_deleted), Snackbar.LENGTH_SHORT).show()
-                }
-                viewModel.notificationDone()
-            }
-        }
 
-    }
-
-    override fun remove(monumentPosition: Int) {
-        viewModel.removeMonument(monumentPosition)
-    }
 
 }

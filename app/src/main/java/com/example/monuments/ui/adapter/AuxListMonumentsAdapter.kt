@@ -18,6 +18,7 @@ class AuxListMonumentsAdapter(private val listener: AuxMonumentsListener):
 
     interface AuxMonumentsListener {
         fun onClick(id: String)
+        fun onLongClick(id: String)
     }
 
 
@@ -41,6 +42,11 @@ class AuxListMonumentsAdapter(private val listener: AuxMonumentsListener):
             Glide.with(itemView.context).load(item.images[0].url).into(image)
             cardView.setOnClickListener {
                 listener.onClick(item.id)
+            }
+
+            cardView.setOnLongClickListener {
+                listener.onLongClick(item.id)
+                true
             }
         }
     }

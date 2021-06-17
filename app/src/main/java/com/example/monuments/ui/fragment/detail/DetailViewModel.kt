@@ -31,12 +31,12 @@ class DetailViewModel @Inject constructor(private val mainRepository: MainReposi
 
     }
 
-    fun changeFavorite() {
+    fun changeFavorite(id: String) {
         progressBarStatusLiveData.value = true
 
         viewModelScope.launch(Dispatchers.IO) {
 
-            monument.value?.let { mainRepository.changeFavorite(it) }
+            mainRepository.changeFavorite(id)
 
             monumentLiveData.postValue(monument.value?.id?.let {
                 mainRepository.getMonument(it)

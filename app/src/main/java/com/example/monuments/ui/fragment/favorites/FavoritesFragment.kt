@@ -11,16 +11,18 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Index
+import com.example.monuments.R
 import com.example.monuments.databinding.FragmentFavoritesBinding
 import com.example.monuments.domain.MonumentBO
 import com.example.monuments.extensions.changeVisible
 import com.example.monuments.repository.MainRepository
 import com.example.monuments.ui.adapter.AuxListMonumentsAdapter
+import com.example.monuments.ui.dialog.RemoveMonumentDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FavoritesFragment : Fragment() {
+class FavoritesFragment : Fragment(), RemoveMonumentDialogFragment.RemoveMonumentListener {
 
     private val viewModel by lazy { ViewModelProvider(this).get(FavoritesViewModel::class.java) }
 
@@ -31,6 +33,16 @@ class FavoritesFragment : Fragment() {
             val action = FavoritesFragmentDirections.actionFavoritesToDetail(id)
             NavHostFragment.findNavController(this@FavoritesFragment).navigate(action)
         }
+
+        override fun onLongClick(id: String) {
+            val dialog: RemoveMonumentDialogFragment = RemoveMonumentDialogFragment.newInstance(id)
+            dialog.setTargetFragment(this@FavoritesFragment, 10)
+            dialog.show(this@FavoritesFragment.parentFragmentManager, getString(R.string.detail_dialog_tag))
+        }
+    }
+
+    private val progressBarObserver = Observer<Boolean> { value ->
+        favoriteMonumentsViewBinding?.favoritesProgressProgressBar?.changeVisible(value)
     }
 
     private val mAdapter by lazy { AuxListMonumentsAdapter(listener) }
@@ -59,6 +71,11 @@ class FavoritesFragment : Fragment() {
         favoriteMonumentsViewBinding?.favoritesListFavoritesMonuments?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         favoriteMonumentsViewBinding?.favoritesListFavoritesMonuments?.adapter = mAdapter
 
+        viewModel.progressBar.observe(viewLifecycleOwner, progressBarObserver)
         viewModel.getFavoritesMonuments().observe(viewLifecycleOwner, favoritesObserver)
+    }
+
+    override fun remove(id: String) {
+        viewModel.changeFavorite(id)
     }
 }

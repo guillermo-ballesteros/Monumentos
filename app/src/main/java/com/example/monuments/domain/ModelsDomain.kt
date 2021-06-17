@@ -6,16 +6,16 @@ import com.example.monuments.database.MonumentDao
 import java.sql.Date
 
 data class MonumentBO(
-        val id: String,
-        val user: String,
-        val name: String,
-        val city: String,
-        val description: String,
-        val urlExtraInformation: String?,
-        val location: LocationBO,
-        val images: List<ImageBO>,
-        val favorite: FavoriteBO,
-        val createTime: Date
+    var id: String,
+    val user: String,
+    val name: String,
+    val city: String,
+    val description: String,
+    val urlExtraInformation: String?,
+    val location: LocationBO,
+    val images: List<ImageBO>,
+    val favorite: FavoriteBO,
+    val createTime: Date
 )
 
 data class LocationBO(

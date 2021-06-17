@@ -20,10 +20,6 @@ class AllMonumentsViewModel @Inject constructor(private val mainRepository: Main
     val progressBar: LiveData<Boolean>
         get() = progressBarLiveData
 
-    private val resultLiveData = MutableLiveData<Int>()
-    val result: LiveData<Int>
-        get() = resultLiveData
-
     fun refreshData() {
         progressBarLiveData.value = true
         viewModelScope.launch(Dispatchers.IO) {
@@ -32,13 +28,10 @@ class AllMonumentsViewModel @Inject constructor(private val mainRepository: Main
         }
     }
 
-    fun changeFavorite(position: Int) {
+    fun changeFavorite(id: String) {
         progressBarLiveData.value = true
-        val monumentBO = mainRepository.monuments.value?.get(position)
         viewModelScope.launch(Dispatchers.IO) {
-            if (monumentBO != null) {
-                mainRepository.changeFavorite(monumentBO)
-            }
+            mainRepository.changeFavorite(id)
             progressBarLiveData.postValue(false)
         }
 
@@ -48,15 +41,4 @@ class AllMonumentsViewModel @Inject constructor(private val mainRepository: Main
         return mainRepository.monuments
     }
 
-    fun removeMonument(position: Int) {
-        progressBarLiveData.value = true
-        viewModelScope.launch(Dispatchers.IO) {
-            resultLiveData.postValue(mainRepository.removeMonument(position))
-            progressBarLiveData.postValue(false)
-        }
-    }
-
-    fun notificationDone() {
-        resultLiveData.value = Constants.DELETED_NOTIFY_DONE_CODE
-    }
 }

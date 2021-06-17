@@ -28,6 +28,8 @@ class DetailFragment : Fragment() {
 
     private var detailViewBinding: FragmentDetailBinding? = null
 
+    var id: String? = null
+
     private val commentsObserver = Observer<List<CommentBO>> {
 
         detailViewBinding?.detailLabelNotification?.text = it.size.toString()
@@ -79,10 +81,11 @@ class DetailFragment : Fragment() {
 
 
         arguments?.let {
-            val id = DetailFragmentArgs.fromBundle(it).monumentId
-            viewModel.getMonument(id)
-            viewModel.getComments(id).observe(viewLifecycleOwner, commentsObserver)
+            id = DetailFragmentArgs.fromBundle(it).monumentId
         }
+
+        id?.let { id -> viewModel.getMonument(id) }
+        id?.let { id -> viewModel.getComments(id).observe(viewLifecycleOwner, commentsObserver) }
 
         detailViewBinding?.detailBtnPrevious?.setOnClickListener{
             detailViewBinding?.detailPagerViewPager?.let {
@@ -97,7 +100,7 @@ class DetailFragment : Fragment() {
         }
 
         detailViewBinding?.detailBtnFavorite?.setOnClickListener {
-            viewModel.changeFavorite()
+            id?.let { id -> viewModel.changeFavorite(id) }
         }
 
         detailViewBinding?.detailBtnRate?.setOnClickListener {

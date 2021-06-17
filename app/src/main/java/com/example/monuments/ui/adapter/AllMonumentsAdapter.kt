@@ -18,8 +18,7 @@ class AllMonumentsAdapter( private val listener: AllMonumentsListener):
     ListAdapter<MonumentBO, AllMonumentsAdapter.ViewHolder>(DiffUtilAllMonuments()){
 
     interface AllMonumentsListener {
-        fun onFavClick(position: Int)
-        fun onLongClick(position: Int)
+        fun onFavClick(id: String)
         fun onClick(id: String)
     }
 
@@ -49,13 +48,8 @@ class AllMonumentsAdapter( private val listener: AllMonumentsListener):
                 listener.onClick(getItem(adapterPosition).id)
             }
 
-            cardView.setOnLongClickListener {
-                listener.onLongClick(adapterPosition)
-                true
-            }
-
             favBtn.setOnClickListener {
-                listener.onFavClick(adapterPosition)
+                listener.onFavClick(getItem(adapterPosition).id)
             }
         }
         fun bind(item: MonumentBO) {
